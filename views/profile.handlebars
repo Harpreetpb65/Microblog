@@ -1,0 +1,44 @@
+{{! Use the main layout }}
+{{!< main }}
+
+<section class="profile-content-container">
+    <div class="profile-header">
+        <div class="profile-avatar">
+            <img src="{{#if user.avatar_url}}{{user.avatar_url}}{{else}}/avatar/{{user.username}}{{/if}}" alt="{{user.username}}">
+        </div>
+        <div class="profile-info">
+            <h2>{{user.username}}</h2>
+            <p>Member since: {{user.memberSince}}</p>
+        </div>
+    </div>
+
+    {{#if deletedPost}}
+    <div class="alert alert-success">
+        {{deletedPost}}
+    </div>
+    {{/if}}
+
+    <div class="user-posts">
+        <h3>Your Posts</h3>
+        {{#if posts.length}}
+        <ul>
+            {{#each posts}}
+            <li>
+                <div class="post-header">
+                    <h4>{{title}}</h4>
+                    <form action="/delete/{{id}}" method="POST" class="delete-form">
+                        <button type="submit" class="delete-button">Delete</button>
+                    </form>
+                </div>
+                <p>{{content}}</p>
+                <div class="post-footer">
+                    <span>Posted on {{timestamp}}</span>
+                </div>
+            </li>
+            {{/each}}
+        </ul>
+        {{else}}
+        <p>No posts yet. Start posting to see them here!</p>
+        {{/if}}
+    </div>
+</section>

@@ -1,0 +1,41 @@
+{{! Use the main layout }}
+{{!< main }}
+
+<section class="auth-container">
+    <div class="auth-forms">
+        <div class="login-area">
+            <h2>Login</h2>
+            {{#if loginError}}
+                <p class="error">{{loginError}}</p>
+            {{/if}}
+            {{#if successMessage}}
+                <p class="success">{{successMessage}}</p>
+            {{/if}}
+            <form action="/login" method="POST">
+                <div class="form-group">
+                    <label for="login-username">Username</label>
+                    <input type="text" id="login-username" name="username" required>
+                </div>
+                <button type="submit" class="auth-button">Login</button>
+            </form>
+        </div>
+
+        <div class="divider">
+            <span>OR</span>
+        </div>
+
+        <div class="register-area">
+            <h2>Register</h2>
+            {{#if regError}}
+                <p class="error">{{regError}}</p>
+            {{/if}}
+            <form action="/register" method="POST">
+                <div class="form-group">
+                    <label for="register-username">Username</label>
+                    <input type="text" id="register-username" name="username" required>
+                </div>
+                <button type="submit" class="auth-button">Register</button>
+            </form>
+        </div>
+    </div>
+</section>

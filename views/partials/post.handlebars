@@ -1,0 +1,24 @@
+{{! Partial for a single post }}
+<div class="post">
+    <div class="post-avatar">
+        <img src="{{#if user.avatar_url}}{{user.avatar_url}}{{else}}/avatar/{{user.username}}{{/if}}" alt="Avatar">
+    </div>
+    <div class="post-content preserve-newlines">
+        <h2>{{title}}</h2>
+        <p>{{content}}</p>
+        <div class="post-status-bar">
+            <span>Posted by {{username}} on {{timestamp}}</span>
+            <div>
+                {{#ifCond user.username username}}
+                    <form action="/delete/{{id}}" method="POST" style="display:inline;">
+                        <button type="submit" class="delete-button"><i class="fas fa-trash-alt"></i> Delete</button>
+                    </form>
+                {{else}}
+                    <form action="/like/{{id}}" method="POST" style="display:inline;">
+                        <button type="submit" class="like-button">♥ Like ({{likes}})</button>
+                    </form>
+                {{/ifCond}}
+            </div>
+        </div>        
+    </div>
+</div>
